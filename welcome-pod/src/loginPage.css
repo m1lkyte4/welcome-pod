@@ -1,26 +1,39 @@
 body {
-  background-color: #f0d5e7;  /*the bg is pink*/
+  background-color: #f0f0f0;  
   font-family: Arial, sans-serif;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
 
 .login-page-container { 
-  text-align: center;
-  padding: 50px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh; /* changed height to min-height so content isn't cut off*/
-  display: flex; /* Add this line to enable flexbox */
-  flex-direction: column; /* Stack items vertically */
+  text-align: center;
+}
+
+.hotel-logo {
+  margin-bottom: 10px;
+  width: 120px; /* Adjust size as needed */
 }
 
 form {
-  display: inline-block;
-  text-align: left;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
   padding: 20px;
-  border: 1px solid #f0d5e7;
+  border: 2px solid #000;
   border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /*add subtle shadow*/
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /*add subtle shadow*/
+  width: 100%;
+  max-width: 1000px;
+  align-items:center;
 }
 
 .App-logo {
@@ -50,48 +63,52 @@ form {
 }
 
 
-h1 {
-  color: #e91e63;
+.login-page-container h1 {
+  color: #000;
   font-family: 'Pacifico', cursive;
-  font-size: 3em;
-  margin-bottom: 20px;
+  font-size: 2em;
+  margin-bottom: 10px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
+} 
 
 label {
   display: block;
   margin-bottom: 5px; 
   font-weight: bold;
-  color: #880e4f;
+  color: #000;
 }
 
 input[type="text"] {
   margin: 10px;
-  width: 100%;
-  padding: 12px;
+  width: 90%;
+  max-width: 500px;
+  padding: 10px;
   font-size: 16px;
   border-radius: 8px;
-  border: 2px solid #f48fb1;
+  border: 2px solid #ccc;
   outline: none;
   box-shadow: 0 2px 4px rgba (0, 0, 0, 0.1);
   box-sizing: border-box;
+  text-align: center;
 }
 
 input:focus{
-  border-color: #e91e63;
+  border-color: #007bff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 button[type="submit"] {
-  padding: 10px 20px;
+  padding: 12px 24px;
   font-size: 18px;
-  background-color: #e91e63;
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease;
+  width: 90%;
+  max-width: 90%;
 }
 
 button[type="submit"]:disabled {
@@ -100,15 +117,17 @@ button[type="submit"]:disabled {
 }
 
 button:hover {
-  background-color: #d81b60;
+  background-color: #0056b3;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.kiosk-info p {
+  font-size: 0.8em;
+  margin-bottom: 5px;
 }
+
+.kiosk-info img {
+  width: 50px;
+  height: 50px;
+}
+
