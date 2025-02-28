@@ -1,22 +1,82 @@
 .customer-details-container {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .details-section {
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    width: 50%;
-  }
-  
-  .details-section p {
-    margin-bottom: 10px;
-  }
-  
-  .details-section strong {
-    font-weight: bold;
-  }
-  
+  background-color: #f0f0f0; /* Light gray background */
+  min-height: 100vh;
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Align items to the top */
+  font-family: sans-serif;
+}
+
+.customer-details-container .hotel-logo {
+  width: 200px; /* Adjust the width as needed */
+  margin-bottom: 20px; /* Add some space below the logo */
+}
+
+
+.customer-details-container h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.details-box {
+  border: 2px solid #007bff; /* Blue border */
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 80%; /* Adjust width as needed */
+  max-width: 600px; /* Maximum width */
+  background-color: #fff;
+  text-align: left;
+}
+
+.details-section p {
+  margin-bottom: 10px;
+}
+
+.details-section strong {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button-row button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.back-button {
+  background-color: #6c757d; /* Gray */
+  color: white;
+}
+
+.cancel-button {
+  background-color: #dc3545; /* Red */
+  color: white;
+}
+
+.confirm-button {
+  background-color: #28a745; /* Green */
+  color: white;
+}
+
+.call-staff-button {
+  background-color: #ffc107; /* Yellow */
+  color: #000;
+}
+
+.button-row button:hover {
+  opacity: 0.8;
+}

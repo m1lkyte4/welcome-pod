@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './loginPage.css';
 import hotelName from './assets/hotel-logo.jpg';
-//import LoadingPage from './loading';
 //import hotelLobby from './assets/hotel-lobby.jpg';
 //import kioskLogo from './assets/kiosk-logo.webp';
 

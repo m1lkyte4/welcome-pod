@@ -9,19 +9,23 @@
     justify-content: center;
     color: #fff; /* Adjust text color for visibility on the background image */
     position: relative;
+    width: 100vw;
+    max-width: 100%;
   }
   
-  .hotel-logo {
+  .loading-page-container .hotel-logo {
     width: 200px; /* Adjust size as needed */
     margin-bottom: 20px;
   }
   
-  h1 {
+ .loading-page-container h1 {
+    color: #fff;
     font-size: 3em;
-    margin-bottom: 10px;
+    margin-bottom: 3px;
   }
   
-  p {
-    font-size: 1.2em;
+  .loading-page-container p {
+    color: #fff;
+    font-size: 1.8em;
   }
   

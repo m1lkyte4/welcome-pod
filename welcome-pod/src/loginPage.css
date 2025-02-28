@@ -16,7 +16,7 @@ body {
   text-align: center;
 }
 
-.hotel-logo {
+.login-page-container .hotel-logo {
   margin-bottom: 10px;
   width: 120px; /* Adjust size as needed */
 }

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import './LoadingPage.css';
+import './loading.css';
 import hotelName from './assets/hotel-logo.jpg'; // Import your hotel logo
-//import hotelLobby from './assets/hotel lobby.jpg'; // Import the hotel lobby image
+import hotelLobby from './assets/hotel-lobby.jpg'; // Import the hotel lobby image
 
 const LoadingPage = () => {
   const navigate = useNavigate();
