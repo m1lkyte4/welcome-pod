@@ -1,0 +1,27 @@
+.loading-page-container {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff; /* Adjust text color for visibility on the background image */
+    position: relative;
+  }
+  
+  .hotel-logo {
+    width: 200px; /* Adjust size as needed */
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 1.2em;
+  }
+  

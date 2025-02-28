@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './loginPage.css';
 import hotelName from './assets/hotel-logo.jpg';
+//import LoadingPage from './loading';
 //import hotelLobby from './assets/hotel-lobby.jpg';
 //import kioskLogo from './assets/kiosk-logo.webp';
 
@@ -15,14 +16,14 @@ const LoginPage = () => {
     // Simulate fetching customer details
     const customerDetails = {
       //name,
-      bookingNumber,
+      bookingNumber: bookingNumber,
       checkInDate: '2023-02-20',
       checkOutDate: '2023-02-25',
       numberOfGuests: 2,
       roomNumber: '101',
     };
 
-    navigate('/customer-details', { state: customerDetails });
+    navigate('/loading', { state: customerDetails });
   };
 
   return (

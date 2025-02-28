@@ -4,6 +4,7 @@ import HomePage from './homepage';
 import LoginPage from './loginPage';
 import CustomerDetailsPage from './CustomerDetailsPage';
 import CheckInMethodPage from './checkinmethod';
+import LoadingPage from './loading';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/check-in-method" element={<CheckInMethodPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path='/loading' element={<LoadingPage />} />
         <Route path="/customer-details" element={<CustomerDetailsPage />} />
       </Routes>
     </BrowserRouter>
