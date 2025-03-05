@@ -18,7 +18,7 @@ const CustomerDetailsPage = () => {
   }
 
   const handleCallStaff = () => {
-    alert('Calling Staff - Functionality Not Implemented');
+    navigate('/call-staff');
   };
 
   const handleConfirm = () => {

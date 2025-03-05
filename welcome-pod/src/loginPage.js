@@ -1,28 +1,43 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './loginPage.css';
 import hotelName from './assets/hotel-logo.jpg';
-//import hotelLobby from './assets/hotel-lobby.jpg';
-//import kioskLogo from './assets/kiosk-logo.webp';
+//import CustomerDetailsPage from './CustomerDetailsPage';
+
 
 const LoginPage = () => {
   //const [name, setName] = useState('');
   const [bookingNumber, setBookingNumber] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Simulate fetching customer details
-    const customerDetails = {
-      //name,
-      bookingNumber: bookingNumber,
-      checkInDate: '2023-02-20',
-      checkOutDate: '2023-02-25',
-      numberOfGuests: 2,
-      roomNumber: '101',
-    };
 
-    navigate('/loading', { state: customerDetails });
+    try {
+      const response = await axios.get(`http://localhost:3000/api/bookings/${bookingNumber}`);
+      const customerDetails = response.data;
+
+      if (customerDetails) {
+          // Create a serializable copy of customerDetails
+          const serializableDetails = {
+              bookingNumber: customerDetails.bookingNumber,
+              checkInDate: customerDetails.checkInDate,
+              checkOutDate: customerDetails.checkOutDate,
+              numberOfGuests:customerDetails.numberOfGuests,
+              roomNumber: customerDetails.roomNumber,
+              //qr_code_data: customerDetails.qr_code_data,
+              // Add other serializable properties here
+          };
+
+          navigate('/loading', { state: serializableDetails });
+      } else {
+          alert('Booking number not found.');
+      }
+  } catch (error) {
+      console.error('Error fetching booking details:', error);
+      alert('An error occurred. Please try again.');
+  }
   };
 
   return (
