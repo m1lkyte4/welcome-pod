@@ -21,14 +21,13 @@ const LoginPage = () => {
       if (customerDetails) {
           // Create a serializable copy of customerDetails
           const serializableDetails = {
-              bookingNumber: customerDetails.bookingNumber,
-              checkInDate: customerDetails.checkInDate,
-              checkOutDate: customerDetails.checkOutDate,
-              numberOfGuests:customerDetails.numberOfGuests,
-              roomNumber: customerDetails.roomNumber,
-              //qr_code_data: customerDetails.qr_code_data,
-              // Add other serializable properties here
-          };
+            bookingNumber: customerDetails.bookingNumber,
+            checkInDate: customerDetails.checkInDate,
+            checkOutDate: customerDetails.checkOutDate,
+            numberOfGuests: customerDetails.numberOfGuests,
+            roomNumber: customerDetails.roomNumber,
+        };
+        
 
           navigate('/loading', { state: serializableDetails });
       } else {

@@ -3,6 +3,9 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const app = express();
 const port = 3000;
+const dotenv = require('dotenv');
+
+dotenv.config(); // load env vb from .env file
 
 app.use(cors());
 app.use(express.json());
