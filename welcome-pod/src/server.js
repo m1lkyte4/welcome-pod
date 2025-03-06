@@ -30,13 +30,15 @@ app.post('/api/bookings', (req, res) => {
     });
 });
 
-//API endpoint to get booking by booking id.
-app.get('/api/bookings/:booking_id', (req, res) => {
-    const booking_id = req.params.booking_id;
-    pool.query('SELECT * FROM bookings WHERE booking_id = ?', booking_id, (err, results) => {
+//API endpoint to get booking by booking number.
+app.get('/api/bookings/:bookingNumber', (req, res) => {
+    const bookingNumber = req.params.bookingNumber;
+    pool.query('SELECT * FROM bookings WHERE bookingNumber = ?', bookingNumber, (err, results) => {
         if (err) {
             console.error(err);
             res.status(500).send('Error getting booking');
+        } else if (results.length === 0) {
+            res.status(404).send('Booking not found');
         } else {
             res.json(results[0]);
         }
