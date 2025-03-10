@@ -3,16 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './loginPage.css';
 import hotelName from './assets/hotel-logo.jpg';
-//import CustomerDetailsPage from './CustomerDetailsPage';
 
 
 const LoginPage = () => {
-  //const [name, setName] = useState('');
   const [bookingNumber, setBookingNumber] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Input validation: Check if bookingNumber is a 6-digit number
+    if (!/^\d{6}$/.test(bookingNumber)) {
+      alert('Please enter a valid 6-digit booking number.');
+      return; // Stop form submission
+    }
 
     try {
       const response = await axios.get(`http://localhost:3000/api/bookings/${bookingNumber}`);
@@ -31,11 +35,11 @@ const LoginPage = () => {
 
           navigate('/loading', { state: serializableDetails });
       } else {
-          alert('Booking number not found.');
+          navigate('/error');
       }
   } catch (error) {
       console.error('Error fetching booking details:', error);
-      alert('An error occurred. Please try again.');
+      navigate('/error');
   }
   };
 

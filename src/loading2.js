@@ -10,10 +10,8 @@ const Loading2 = () => {
   useEffect(() => {
     // Simulate dispensing room card
     const timer = setTimeout(() => {
-      // After dispensing, navigate to a confirmation page
-      // TODO: Create a confirmation page, if necessary
-      navigate('/dispenser', { state: location.state }); // or wherever it needs to go after this page
-    }, 5000); // 5 seconds (adjust as needed)
+      navigate('/dispenser', { state: location.state }); // route to dispenser page
+    }, 4000); // 4 seconds 
 
     // Clear the timer if the component unmounts
     return () => clearTimeout(timer);

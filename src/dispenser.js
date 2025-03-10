@@ -11,11 +11,8 @@ const Dispenser = () => {
   useEffect(() => {
     // You can add an optional delay before navigating
     const timer = setTimeout(() => {
-      // After displaying the "Card Dispensed" message for a few seconds, 
-      // you might want to redirect to a "thank you" or "start over" page.
-      // For now, it doesn't redirect anywhere to prevent confusion.
-      //navigate('/thank-you');  // Replace '/thank-you' with your desired route
-    }, 5000); //5 seconds.
+      navigate('/');  // reroute to homepage screen 
+    }, 5000); // reroute-ing to homepage in 5 seconds.
   }, []);
 
   return (

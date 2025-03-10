@@ -8,6 +8,7 @@ import CheckInMethodPage from './checkinmethod';
 import LoadingPage from './loading';
 import Loading2 from './loading2';
 import Dispenser from './dispenser';
+import ErrorPage from './errorPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/call-staff" element={<CallStaff />} />
         <Route path="/loading2" element={<Loading2 />} />
         <Route path="/dispenser" element={<Dispenser />} />
+        <Route path="/error" element={<ErrorPage />} /> 
       </Routes>
     </BrowserRouter>
   );

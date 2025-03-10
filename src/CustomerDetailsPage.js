@@ -8,6 +8,27 @@ const CustomerDetailsPage = () => {
   const navigate = useNavigate();
   const customerDetails = location.state || {};
 
+  // Function to format the date
+  const formatDate = (dateString) => {
+    try {
+      const date = new Date(dateString);
+      // Check if the date is valid
+      if (isNaN(date.getTime())) {
+        console.error("Invalid date:", dateString);
+        return 'Invalid Date'; // Return a default value for invalid dates
+      }
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+    } catch (error) {
+      console.error("Error formatting date:", dateString, error);
+      return 'Invalid Date'; // Return a default value if an error occurs
+    }
+  };
+
+
   //Function to handle the "Back" button click 
   const handleBack = () => {
     navigate('/check-in-method'); //navigate back to the checkinmethod page
@@ -33,8 +54,8 @@ const CustomerDetailsPage = () => {
         {customerDetails.bookingNumber ? (
           <div className="details-section">
             <p><strong>Booking ID:</strong> {customerDetails.bookingNumber}</p>
-            <p><strong>Check-in Date:</strong> {customerDetails.checkInDate}</p>
-            <p><strong>Check-out Date:</strong> {customerDetails.checkOutDate}</p>
+            <p><strong>Check-in Date:</strong> {formatDate(customerDetails.checkInDate)}</p>
+            <p><strong>Check-out Date:</strong> {formatDate(customerDetails.checkOutDate)}</p>
             <p><strong>Number of Guests:</strong> {customerDetails.numberOfGuests}</p>
             <p><strong>Room Number:</strong> {customerDetails.roomNumber}</p>
           </div>
