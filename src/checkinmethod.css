@@ -1,0 +1,53 @@
+.check-in-method-container {
+    background-color: #f0f0f0; 
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Kalam', sans-serif; /* Apply Kalam, fallback to sans-serif */
+    color: #000;
+  }
+  
+  .hotel-logo {
+      width: 200px; /* Adjust the width as needed */
+      height: auto; /* Maintain aspect ratio */
+      margin-bottom: 20px; /* Add some space below the logo */
+    }
+  
+  h2 {
+    font-size: 2em; /* Adjust size as needed */
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+  }
+  
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+  .check-in-button {
+    background-color: transparent; 
+    color: #000; /* Black text */
+    padding: 12px 24px;
+    border: 3px solid #000; /* Thicker border */
+    border-radius: 0px; /* Square corners */
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.1em; /* Adjust size as needed */
+    transition: background-color 0.3s, color 0.3s;
+    font-family: 'Kalam', sans-serif; /* Apply Kalam to the button */
+    margin-bottom: 20px; /* Add spacing between buttons */
+  }
+  
+  .check-in-button:hover {
+    background-color: #000; /* Black background on hover */
+    color: #fff; /* White text on hover */
+  }
+  

@@ -1,0 +1,79 @@
+.home-page-container {
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Full viewport height */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Kalam', sans-serif; /* Use Kalam, fallback to sans-serif */
+  color: #333; /* Adjust text color as needed */
+  position: relative; /* For absolute positioning of kiosk-info */
+  width: 100vw;
+  max-width: 100%;
+}
+
+.social-icons {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.social-icons p {
+  margin-right: 10px;
+}
+
+.social-icons img {
+  width: 30px; /* Adjust size as needed */
+  height: 30px;
+  margin: 0 5px;
+}
+
+.hotel-logo {
+  width: 40%; 
+  max-width: 250px;
+  height: auto; /* Maintain aspect ratio */
+  margin-bottom: 20px; /* Add some space below the logo */
+}
+
+.check-in-button {
+  background-color: #fff; /* White background */
+  color: #000; /* Black text */
+  padding: 15px 30px;
+  border: 2px solid #000; /* Black border */
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.5em; /* Adjust size as needed */
+  transition: background-color 0.3s, color 0.3s;
+  font-family: 'Kalam', sans-serif; /* Apply Kalam to the button */
+  width: 80%;
+  max-width: 400px;
+}
+
+.check-in-button:hover {
+  background-color: #000; /* Black background on hover */
+  color: #fff; /* White text on hover */
+}
+
+.kiosk-info {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  text-align: right;
+  max-width: 90%;
+}
+
+.kiosk-info p {
+  font-size: 0.8em;
+  margin-bottom: 5px;
+  font-family: 'Kalam', sans-serif; /* Apply Kalam to the kiosk info */
+}
+
+.kiosk-info img {
+  width: 50px; /* Adjust size as needed */
+  height: 50px;
+}
