@@ -1,0 +1,35 @@
+.loading2-container {
+    background-color: #f0f0f0; /* Light gray background */
+    min-height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+  }
+  
+  .loading2-container .hotel-logo {
+    width: 200px; /* Adjust size as needed */
+    margin-bottom: 30px;
+  }
+  
+  .loading2-container h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .loading2-container .spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #3498db; /* Blue */
+    border-top: 5px solid transparent;
+    border-radius: 50%;
+    animation: spin 2s linear infinite; /* This makes it spin! */
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
