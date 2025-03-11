@@ -1,12 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { fetchData } from './services/api';
 import './dispenser.css';
 import hotelLogo from './assets/hotel-logo.jpg'; // Import your hotel logo
 import checkmark from './assets/checkmark.webp'; // Import your checkmark image
 
 
 const Dispenser = () => {
+  const [data, setData] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const getData = async () => {
+      const result = await fetchData();
+      setData(result);
+    };
+
+    getData();
+  }, []);
 
   useEffect(() => {
     // You can add an optional delay before navigating
@@ -21,6 +32,11 @@ const Dispenser = () => {
       <img src={checkmark} alt="Checkmark" className="checkmark" />
       <h1>Card Dispensed.</h1>
       <p>We hope you have a wonderful stay.</p>
+      <ul>
+        {data.map((item) => (
+          <li key={item.id}>{item.name}</li>
+        ))}
+      </ul>
     </div>
   );
 };
