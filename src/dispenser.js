@@ -10,10 +10,10 @@ const Dispenser = () => {
 
   useEffect(() => {
     // You can add an optional delay before navigating
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       navigate('/');  // reroute to homepage screen 
     }, 5000); // reroute-ing to homepage in 5 seconds.
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="dispenser-container">
