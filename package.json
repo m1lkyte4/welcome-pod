@@ -21,10 +21,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start:backend": "node src/server.js"
   },
   "eslintConfig": {
     "extends": [
@@ -52,5 +49,13 @@
   "devDependencies": {
     "@babel/preset-env": "^7.26.9",
     "@babel/preset-react": "^7.26.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m1lkyte4/welcome-pod.git"
+  },
+  "bugs": {
+    "url": "https://github.com/m1lkyte4/welcome-pod/issues"
+  },
+  "homepage": "https://github.com/m1lkyte4/welcome-pod#readme"
 }
