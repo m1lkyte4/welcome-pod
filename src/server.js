@@ -2,17 +2,15 @@ const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const path = require('path'); // Import the path module
 
-dotenv.config(); // Load environment variables from .env file
+dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000; // Use Heroku's PORT or 3000 locally
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build'))); // Adjust 'client/build' if needed
 
 const pool = mysql.createPool({
     host: process.env.DB_HOST || 'localhost',
@@ -52,10 +50,14 @@ app.get('/api/bookings/:bookingNumber', (req, res) => {
     });
 });
 
-// The "catchall" handler: for any request that doesn't match one above, send back React's index.html file.
+// Serve static files from the React app (if you have a frontend)
+app.use(express.static(path.join(__dirname, 'client/build'))); // Adjust 'client/build' if needed
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build/index.html')); // Adjust 'client/build' if needed
-  });
+});
 
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);
