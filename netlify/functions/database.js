@@ -1,7 +1,6 @@
 const mysql = require('mysql2/promise');
 require('dotenv').config();
 
-// Function to parse JAWSDB_URL
 function parseDbUrl(url) {
   const pattern = /^mysql:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)$/;
   const matches = url.match(pattern);
@@ -24,11 +23,24 @@ exports.handler = async (event, context) => {
   let config;
   
   try {
+    // Extract booking ID from path
+    // This handles different ways Netlify might pass the path
+    let bookingId;
+    if (event.pathParameters) {
+      bookingId = event.pathParameters.id;
+    } else if (event.path) {
+      bookingId = event.path.split('/').pop();
+    } else {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: 'No booking ID provided' }),
+      };
+    }
+    
     // Use JAWSDB_URL if available
     if (process.env.JAWSDB_URL) {
       config = parseDbUrl(process.env.JAWSDB_URL);
     } else {
-      // Fallback to individual environment variables
       config = {
         host: process.env.DB_HOST || 'localhost',
         user: process.env.DB_USER || 'root',
@@ -39,13 +51,20 @@ exports.handler = async (event, context) => {
     }
     
     connection = await mysql.createConnection(config);
-    const bookingId = event.path.split('/').pop();
     const [rows] = await connection.query('SELECT * FROM bookings WHERE bookingNumber = ?', [bookingId]);
     await connection.end();
     
+    // Check if booking was found
+    if (rows.length === 0) {
+      return {
+        statusCode: 404,
+        body: JSON.stringify({ error: 'Booking not found' }),
+      };
+    }
+    
     return {
       statusCode: 200,
-      body: JSON.stringify(rows),
+      body: JSON.stringify(rows[0]), // Return the first matching booking
     };
   } catch (err) {
     console.error('Database connection error:', err);
