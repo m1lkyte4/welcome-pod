@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 const pool = mysql.createPool({
-    host: 'localhost',
+    host: '0.0.0.0',
     user: 'root', // Replace with your MySQL username
     password: 'March@2025', // Replace with your MySQL password
     database: 'welcome_pod',
