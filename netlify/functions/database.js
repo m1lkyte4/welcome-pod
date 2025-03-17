@@ -39,7 +39,8 @@ exports.handler = async (event, context) => {
     }
     
     connection = await mysql.createConnection(config);
-    const [rows] = await connection.query('SELECT * FROM Bookings');
+    const bookingId = event.path.split('/').pop();
+    const [rows] = await connection.query('SELECT * FROM bookings WHERE bookingNumber = ?', [bookingId]);
     await connection.end();
     
     return {
