@@ -12,10 +12,14 @@ const Dispenser = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const result = await fetchData();
-      setData(result);
+      try {
+        const result = await fetchData();
+        setData(result || []); // Fallback to empty array if `result` is undefined
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+        setData([]); // Set to empty array on error
+      }
     };
-
     getData();
   }, []);
 
@@ -33,7 +37,7 @@ const Dispenser = () => {
       <h1>Card Dispensed.</h1>
       <p>We hope you have a wonderful stay.</p>
       <ul>
-        {data.map((item) => (
+        {data?.map((item) => (
           <li key={item.id}>{item.name}</li>
         ))}
       </ul>
