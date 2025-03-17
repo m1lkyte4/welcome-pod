@@ -1,23 +1,24 @@
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
-const app = express();
-const port = 3000;
 const dotenv = require('dotenv');
 
-dotenv.config(); // load env vb from .env file
+dotenv.config(); // Load environment variables from .env file
+
+const app = express();
+const port = process.env.PORT || 3000; // Use Heroku's PORT or 3000 locally
 
 app.use(cors());
 app.use(express.json());
 
 const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root', // Replace with your MySQL username
-    password: 'March@2025', // Replace with your MySQL password
-    database: 'welcome_pod',
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || 'March@2025',
+    database: process.env.DB_DATABASE || 'welcome_pod',
     waitForConnections: true,
     connectionLimit: 10,
-    queueLimit: 0
+    queueLimit: 0,
 });
 
 // API endpoint to add a booking
@@ -33,7 +34,7 @@ app.post('/api/bookings', (req, res) => {
     });
 });
 
-//API endpoint to get booking by booking number.
+// API endpoint to get booking by booking number.
 app.get('/api/bookings/:bookingNumber', (req, res) => {
     const bookingNumber = req.params.bookingNumber;
     pool.query('SELECT * FROM bookings WHERE bookingNumber = ?', bookingNumber, (err, results) => {
