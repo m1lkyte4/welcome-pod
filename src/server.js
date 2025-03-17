@@ -2,12 +2,19 @@ const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const path = require('path'); // Import the path module
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+const corsOptions = {
+    origin: 'https://welcom3p0d.netlify.app/', // Replace with your Netlify URL
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(corsOptions));
+
 
 app.use(cors());
 app.use(express.json());
@@ -50,13 +57,9 @@ app.get('/api/bookings/:bookingNumber', (req, res) => {
     });
 });
 
-// Serve static files from the React app (if you have a frontend)
-app.use(express.static(path.join(__dirname, 'client/build'))); // Adjust 'client/build' if needed
-
-// The "catchall" handler: for any request that doesn't
-// match one above, send back React's index.html file.
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build/index.html')); // Adjust 'client/build' if needed
+// Add a simple route for the root path
+app.get('/', (req, res) => {
+    res.send('Welcome to the Welcome Pod API!');
 });
 
 app.listen(port, () => {
