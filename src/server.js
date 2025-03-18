@@ -136,6 +136,10 @@ app.get('/', (req, res) => {
     res.send('Welcome to the Welcome Pod API!');
 });
 
-app.listen(port, () => {
+/*app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
+}); */
+
+app.listen(port, '0.0.0.0', () => {
+    console.log(`Server listening at http://0.0.0.0:${port}`);
 });
