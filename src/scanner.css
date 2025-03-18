@@ -1,8 +1,13 @@
 #qr-reader {
-    margin: 20px auto; /* Adds margin on top and bottom, centers horizontally */
-    width: 500px;      /* Increased width */
-    height: 500px;     /* Increased height */
-    max-width: 80%;    /* Responsive width */
+    width: 70vh; /* Use viewport height for size */
+    height: 70vh; /* Use viewport height for size */
+    max-width: 80%; /* Responsive width */
+    max-height: 80%; /* Responsive height */
+    margin: auto;    /* Center horizontally */
+    position: absolute; /* Required for vertical centering */
+    top: 50%;         /* Required for vertical centering */
+    left: 50%;        /* Required for vertical centering */
+    transform: translate(-50%, -50%); /* Centers the element perfectly */
   }
   
   .check-in-method-container {
