@@ -10,6 +10,7 @@ const CustomerDetailsPage = () => {
     const [customerDetails, setCustomerDetails] = useState({});
     const [scanning, setScanning] = useState(false);
     const [error, setError] = useState(null);
+    const [isManualNumberEntry, setIsManualNumberEntry] = useState(false);
 
     const bookingNumberFromCheckIn = location.state?.bookingNumber;
 
@@ -32,12 +33,12 @@ const CustomerDetailsPage = () => {
             return 'Invalid Date';
         }
     };
-
+    
     useEffect(() => {
         const fetchData = async () => {
             if (bookingNumberFromCheckIn) {
                 // If booking number is provided from the check-in page, fetch the data
-                setIsScanning(false);  // make sure you are not scanning
+                setIsManualNumberEntry(true);  // set it to true when the number is provided
                 setError(null);
                 try {
                     const response = await fetch(`https://welcom3p0d.netlify.app/.netlify/functions/database/${bookingNumberFromCheckIn}`);
@@ -103,7 +104,7 @@ const CustomerDetailsPage = () => {
                 });
         };
 
-        if (scanning && !bookingNumberFromCheckIn)  { // do not start scan if booking number is available
+        if (scanning && !isManualNumberEntry)  { // do not start scan if booking number is available and it is manual
             startScanning();
         }
 
@@ -114,7 +115,7 @@ const CustomerDetailsPage = () => {
             }
             setScanning(false);
         };
-    }, [scanning, bookingNumberFromCheckIn]);
+    }, [scanning, isManualNumberEntry]);
 
     //Function to handle the "Back" button click
     const handleBack = () => {
@@ -157,7 +158,7 @@ const CustomerDetailsPage = () => {
                     <div className="details-section">
                         <p><strong>Booking ID:</strong> {customerDetails.bookingNumber}</p>
                         <p><strong>Check-in Date:</strong> {formatDate(customerDetails.checkInDate)}</p>
-                        <p><strong>Check-out Date:</strong> {formatDate(customerDetails.checkOutDate)}</p>
+                        <p><strong>Check-out Date:</strong> {formatDate(customerDetails.checkOutDate}</p>
                         <p><strong>Number of Guests:</strong> {customerDetails.numberOfGuests}</p>
                         <p><strong>Room Number:</strong> {customerDetails.roomNumber}</p>
                     </div>
