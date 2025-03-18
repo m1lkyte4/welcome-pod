@@ -18,6 +18,23 @@ function parseDbUrl(url) {
   return null;
 }
 
+// Use a connection pool for efficiency
+const config = process.env.JAWSDB_URL
+  ? parseDbUrl(process.env.JAWSDB_URL)
+  : {
+      host: process.env.DB_HOST || 'localhost',
+      user: process.env.DB_USER || 'root',
+      password: process.env.DB_PASSWORD || 'March@2025',
+      database: process.env.DB_NAME || 'welcome_pod',
+      port: process.env.DB_PORT || 3306,
+      waitForConnections: true,
+      connectionLimit: 10,
+      queueLimit: 0,
+    };
+
+const pool = mysql.createPool(config);
+
+
 exports.handler = async (event, context) => {
   let connection;
   let config;
@@ -36,6 +53,9 @@ exports.handler = async (event, context) => {
         body: JSON.stringify({ error: 'No booking ID provided' }),
       };
     }
+
+    // Query database
+    const [rows] = await pool.query('SELECT * FROM bookings WHERE bookingNumber = ?', [bookingId]);
     
     // Use JAWSDB_URL if available
     if (process.env.JAWSDB_URL) {
