@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './CustomerDetailsPage.css';
 import hotelName from './assets/hotel-logo.jpg';
 
 const CustomerDetailsPage = () => {
     const navigate = useNavigate();
-    const { id } = useParams(); // Extract the customer ID from the URL
+    const location = useLocation();
     const [customerDetails, setCustomerDetails] = useState({});
     const [error, setError] = useState(null);
+
+    const bookingNumberFromCheckIn = location.state?.bookingNumber;
 
     // Function to format the date
     const formatDate = (dateString) => {
@@ -18,10 +20,10 @@ const CustomerDetailsPage = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            if (id) { // Check if there's a valid ID in the URL
+            if (bookingNumberFromCheckIn) {
                 setError(null);
                 try {
-                    const response = await fetch(`https://welcom3p0d.netlify.app/.netlify/functions/database/${id}`);
+                    const response = await fetch(`https://welcom3p0d.netlify.app/.netlify/functions/database/${bookingNumberFromCheckIn}`);
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
@@ -35,7 +37,7 @@ const CustomerDetailsPage = () => {
             }
         };
         fetchData();
-    }, [id]); // Dependency on `id` to re-fetch when it changes
+    }, [bookingNumberFromCheckIn]);
 
     return (
         <div className="customer-details-container">

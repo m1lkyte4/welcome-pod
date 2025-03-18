@@ -20,6 +20,7 @@ function App() {
         <Route path="/scan-barcode" element={<BarcodeScanner />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path='/loading' element={<LoadingPage />} />
+        <Route path="/customer-details/:id" element={<CustomerDetailsPage />} />
         <Route path="/customer-details" element={<CustomerDetailsPage />} />
         <Route path="/call-staff" element={<CallStaff />} />
         <Route path="/loading2" element={<Loading2 />} />

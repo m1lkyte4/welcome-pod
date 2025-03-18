@@ -9,7 +9,7 @@ const BarcodeScanner = () => {
   useEffect(() => {
     const scanner = new Html5QrcodeScanner(
       "qr-reader", 
-      { fps: 10, qrbox: { width: 250, height: 250 } }
+      { fps: 10, qrbox: { width: 500, height: 500 } }
     );
 
     const fetchBookingAndNavigate = (bookingId) => {
