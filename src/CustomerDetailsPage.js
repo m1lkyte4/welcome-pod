@@ -4,11 +4,13 @@ import './CustomerDetailsPage.css';
 import hotelName from './assets/hotel-logo.jpg';
 import { Html5Qrcode } from "html5-qrcode";
 
+
 const CustomerDetailsPage = () => {
   const [scanResult, setScanResult] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
-  const customerDetails = location.state || {};
+  //const customerDetails = location.state || {};
+  const [customerDetails, setCustomerDetails] = useState({});
   const [scanning, setScanning] = useState(false); // Track if scanning is active
   const [error, setError] = useState(null); // State for scanning errors
 
