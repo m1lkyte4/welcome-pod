@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './CustomerDetailsPage.css';
 import hotelName from './assets/hotel-logo.jpg';
 import { Html5Qrcode } from "html5-qrcode";
 
-
 const CustomerDetailsPage = () => {
-  const [scanResult, setScanResult] = useState('');
-  const location = useLocation();
   const navigate = useNavigate();
-  //const customerDetails = location.state || {};
   const [customerDetails, setCustomerDetails] = useState({});
   const [scanning, setScanning] = useState(false); // Track if scanning is active
   const [error, setError] = useState(null); // State for scanning errors
@@ -52,7 +48,6 @@ const CustomerDetailsPage = () => {
                 }
                 // Update the customerDetails state with the parsed data
                 setCustomerDetails(bookingData);
-                setScanResult(decodedText); // Store the raw scanned data
 
                 // Stop scanning after successful scan
                 html5QrCode.stop();
@@ -61,7 +56,6 @@ const CustomerDetailsPage = () => {
                 console.error("Error processing QR code data:", err);
                 setError("Invalid QR Code format or data");
                 setCustomerDetails({}); // Clear customer details on error
-                setScanResult('');
                 if (html5QrCode && html5QrCode.getState() !== Html5Qrcode.SCANNING_STATE_NOT_SCANNING) {
                     html5QrCode.stop(); // Ensure scanner is stopped
                     setScanning(false);
@@ -83,7 +77,6 @@ const CustomerDetailsPage = () => {
             });
     };
 
-
     if (scanning) {
         startScanning();
     }
@@ -95,7 +88,7 @@ const CustomerDetailsPage = () => {
         }
         setScanning(false);
     };
-  }, [scanning]); // Depend on scanning state
+  }, [scanning]);
 
   //Function to handle the "Back" button click 
   const handleBack = () => {
@@ -126,11 +119,11 @@ const CustomerDetailsPage = () => {
       <img src={hotelName} alt="Floresta Hotel" className="hotel-logo" />
       <h1>Please confirm guest before proceeding</h1>
       <button onClick={handleScanBarcodeClick} className="scan-barcode-button" disabled={scanning}>
-                {scanning ? 'Scanning...' : 'Scan Barcode'}
-            </button>
+        {scanning ? 'Scanning...' : 'Scan Barcode'}
+      </button>
 
-            {scanning && <div id="reader" width="600px"></div>} {/* Show reader when scanning */}
-            {error && <p className="error-message">Error: {error}</p>} {/*Display error if any*/}
+      {scanning && <div id="reader" width="600px"></div>} {/* Show reader when scanning */}
+      {error && <p className="error-message">Error: {error}</p>} {/*Display error if any*/}
 
       <div className="details-box">
         {customerDetails.bookingNumber ? (
