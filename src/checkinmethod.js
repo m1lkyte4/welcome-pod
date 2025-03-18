@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './CheckInMethod.css'; // Import the CSS file
 
 const CheckInMethod = () => {
     const navigate = useNavigate();
@@ -24,18 +25,13 @@ const CheckInMethod = () => {
     };
 
     return (
-        <div>
+        <div className="check-in-container">
+            <img src="/hotel-logo.jpg" alt="Floresta Hotel" className="hotel-logo" /> {/* Hotel Logo */}
             <h1>We need to retrieve your booking details. How would you like it to be done?</h1>
-            <div>
-                <input
-                    type="text"
-                    placeholder="Enter Booking Number"
-                    value={bookingNumber}
-                    onChange={handleBookingNumberChange}
-                />
-                <button onClick={handleEnterBookingNumber}>Enter Booking Number</button>
-            </div>
-            <button onClick={handleScanBarcode}>Scan Barcode</button>
+            <button onClick={handleEnterBookingNumber} className="enter-booking-button">Enter Booking Number</button>
+            <button onClick={handleScanBarcode} className="scan-barcode-button">Scan Barcode</button>
+            <div className="kiosk-dev">KIOSK DEVELOPED BY: </div>
+            <div className="kiosk-logo">Kiosk Logo</div>
         </div>
     );
 };
