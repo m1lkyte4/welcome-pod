@@ -126,23 +126,23 @@ const CustomerDetailsPage = () => {
         navigate('/loading2');
     };
 
-    const handleScanBarcodeClick = () => {
+    /*const handleScanBarcodeClick = () => {
         if (!scanning) {
             setScanning(true);
         }
-    };
+    }; */
 
     return (
         <div className="customer-details-container">
             <img src={hotelName} alt="Floresta Hotel" className="hotel-logo" />
             <h1>Please confirm guest before proceeding</h1>
 
-            <button onClick={handleScanBarcodeClick} className="scan-barcode-button" disabled={scanning}>
+           { /* <button onClick={handleScanBarcodeClick} className="scan-barcode-button" disabled={scanning}>
                 {scanning ? 'Scanning...' : 'Scan Barcode'}
             </button>
 
             {scanning && <div id="reader" width="600px"></div>}
-            {error && <p className="error-message">Error: {error}</p>}
+            {error && <p className="error-message">Error: {error}</p>} */ } 
 
             <div className="details-box">
                 {customerDetails.bookingNumber ? (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './CheckInMethod.css'; // Import CSS for styling
+import './checkinmethod.css'; 
 
 const CheckInMethod = () => {
     const navigate = useNavigate();
