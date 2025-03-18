@@ -21,7 +21,7 @@
     margin-bottom: 20px;
   }
   
-  .dupe-container .details-box {
+ .details-box {
     border: 2px solid #007bff; /* Blue border */
     border-radius: 10px;
     padding: 20px;
@@ -57,22 +57,22 @@
     transition: background-color 0.3s;
   }
   
-  .button-container .back-button {
+  .dupe-container .back-button {
     background-color: #6c757d; /* Gray */
     color: white;
   }
   
-  .button-container .cancel-button {
+  .dupe-container .cancel-button {
     background-color: #dc3545; /* Red */
     color: white;
   }
   
-  .button-container .confirm-button {
+  .dupe-container .confirm-button {
     background-color: #28a745; /* Green */
     color: white;
   }
   
-  .button-container .call-staff-button {
+  .dupe-container .call-staff-button {
     background-color: #ffc107; /* Yellow */
     color: #000;
   }
