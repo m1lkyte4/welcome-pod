@@ -8,7 +8,7 @@ const CheckInMethod = () => {
     const navigate = useNavigate();
 
     return (
-      <div className="check-in-container">
+      <div className="check-in-method-container">
           <img src={hotelName} alt="Floresta Hotel" className="hotel-logo" />
           <h1 className="check-in-title">
               We need to retrieve your booking details. How would you like it to be done?
