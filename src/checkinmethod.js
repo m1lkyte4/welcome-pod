@@ -13,7 +13,7 @@ const CheckInMethodPage = () => {
       <Link to="/login" className="check-in-button">Enter Booking Number</Link>
       <Link to="/scan-barcode" className="check-in-button">Scan Barcode</Link>
       {/* Generate QR code dynamically */}
-      <QRCodeGenerator bookingNumber={bookingNumber} />
+      {/*QRCodeGenerator bookingNumber={bookingNumber}*/} 
       <div className="kiosk-info">
         <p>KIOSK DEVELOPED BY:</p>
         <img src={kioskLogo} alt="Kiosk Logo" />

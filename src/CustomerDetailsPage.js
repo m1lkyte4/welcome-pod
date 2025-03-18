@@ -1,4 +1,5 @@
 import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './CustomerDetailsPage.css';
 import hotelName from './assets/hotel-logo.jpg';
