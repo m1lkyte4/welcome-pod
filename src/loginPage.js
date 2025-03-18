@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+//import axios from 'axios';
 import './loginPage.css';
 import hotelName from './assets/hotel-logo.jpg';
 
