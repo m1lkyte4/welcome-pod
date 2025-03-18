@@ -8,11 +8,11 @@
     text-align: center;
     }
     
-    .scanner .check-in-button {
+    .scanner .back-button {
     display: block;
     margin: 10px auto;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #2359b1;
     color: white;
     text-decoration: none;
     }
