@@ -33,12 +33,11 @@ const CustomerDetailsPage = () => {
             return 'Invalid Date';
         }
     };
-    
+
     useEffect(() => {
         const fetchData = async () => {
             if (bookingNumberFromCheckIn) {
-                // If booking number is provided from the check-in page, fetch the data
-                setIsManualNumberEntry(true);  // set it to true when the number is provided
+                setIsManualNumberEntry(true); 
                 setError(null);
                 try {
                     const response = await fetch(`https://welcom3p0d.netlify.app/.netlify/functions/database/${bookingNumberFromCheckIn}`);
@@ -66,26 +65,22 @@ const CustomerDetailsPage = () => {
 
             html5QrCode = new Html5Qrcode("reader");
 
-            const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+            const qrCodeSuccessCallback = (decodedText) => {
                 try {
                     const bookingData = JSON.parse(decodedText);
-                    // Validate bookingData structure
                     if (!bookingData.bookingNumber || !bookingData.checkInDate || !bookingData.checkOutDate || !bookingData.numberOfGuests || !bookingData.roomNumber) {
                         throw new Error("Incomplete booking data in QR code");
                     }
-                    // Update the customerDetails state with the parsed data
                     setCustomerDetails(bookingData);
 
                     // Stop scanning after successful scan
-                    html5QrCode.stop();
-                    setScanning(false);
+                    html5QrCode.stop().then(() => setScanning(false));
                 } catch (err) {
                     console.error("Error processing QR code data:", err);
                     setError("Invalid QR Code format or data");
                     setCustomerDetails({});
-                    if (html5QrCode && html5QrCode.getState() !== Html5Qrcode.SCANNING_STATE_NOT_SCANNING) {
-                        html5QrCode.stop(); // Ensure scanner is stopped
-                        setScanning(false);
+                    if (html5QrCode) {
+                        html5QrCode.stop().then(() => setScanning(false));
                     }
                 }
             };
@@ -94,7 +89,6 @@ const CustomerDetailsPage = () => {
 
             html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback,
                 (errorMessage) => {
-                    // Handle errors
                     console.warn(`QR code scan error = ${errorMessage}`);
                 })
                 .catch((err) => {
@@ -104,27 +98,25 @@ const CustomerDetailsPage = () => {
                 });
         };
 
-        if (scanning && !isManualNumberEntry)  { // do not start scan if booking number is available and it is manual
+        if (scanning && !isManualNumberEntry) {
             startScanning();
         }
 
         return () => {
-            // Ensure scanning is stopped on unmount
-            if (html5QrCode && html5QrCode.getState() !== Html5Qrcode.SCANNING_STATE_NOT_SCANNING) {
-                html5QrCode.stop().catch((err) => console.log("Failed to stop scanning"));
+            if (html5QrCode) {
+                html5QrCode.stop().catch(() => console.log("Failed to stop scanning"));
             }
             setScanning(false);
         };
     }, [scanning, isManualNumberEntry]);
 
-    //Function to handle the "Back" button click
     const handleBack = () => {
-        navigate('/check-in-method'); //navigate back to the checkinmethod page
+        navigate('/check-in-method');
     };
 
     const handleCancel = () => {
         navigate('/');
-    }
+    };
 
     const handleCallStaff = () => {
         navigate('/call-staff');
@@ -135,7 +127,6 @@ const CustomerDetailsPage = () => {
     };
 
     const handleScanBarcodeClick = () => {
-        // Start scanning when the button is clicked
         if (!scanning) {
             setScanning(true);
         }
@@ -150,15 +141,15 @@ const CustomerDetailsPage = () => {
                 {scanning ? 'Scanning...' : 'Scan Barcode'}
             </button>
 
-            {scanning && <div id="reader" width="600px"></div>} {/* Show reader when scanning */}
-            {error && <p className="error-message">Error: {error}</p>} {/*Display error if any*/}
+            {scanning && <div id="reader" width="600px"></div>}
+            {error && <p className="error-message">Error: {error}</p>}
 
             <div className="details-box">
                 {customerDetails.bookingNumber ? (
                     <div className="details-section">
                         <p><strong>Booking ID:</strong> {customerDetails.bookingNumber}</p>
                         <p><strong>Check-in Date:</strong> {formatDate(customerDetails.checkInDate)}</p>
-                        <p><strong>Check-out Date:</strong> {formatDate(customerDetails.checkOutDate}</p>
+                        <p><strong>Check-out Date:</strong> {formatDate(customerDetails.checkOutDate)}</p>
                         <p><strong>Number of Guests:</strong> {customerDetails.numberOfGuests}</p>
                         <p><strong>Room Number:</strong> {customerDetails.roomNumber}</p>
                     </div>
