@@ -1,37 +1,34 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './CheckInMethod.css'; // Import the CSS file
+import './CheckInMethod.css'; // Import CSS for styling
 
 const CheckInMethod = () => {
     const navigate = useNavigate();
-    const [bookingNumber, setBookingNumber] = useState('');
 
     const handleEnterBookingNumber = () => {
-        if (bookingNumber.trim() !== '') {
-            // Navigate to the CustomerDetailsPage with the booking number
-            navigate('/customer-details', { state: { bookingNumber: bookingNumber } });
-        } else {
-            // Handle the case where the booking number is empty
-            alert('Please enter a booking number.');
-        }
+        navigate('/login'); // Navigate to a separate page for entering the booking number
     };
 
     const handleScanBarcode = () => {
-        navigate('/customer-details'); // Navigate to the CustomerDetailsPage
-    };
-
-    const handleBookingNumberChange = (event) => {
-        setBookingNumber(event.target.value);
+        navigate('/scan-barcode'); // Navigate to the CustomerDetailsPage for barcode scanning
     };
 
     return (
         <div className="check-in-container">
-            <img src="/hotel-logo.jpg" alt="Floresta Hotel" className="hotel-logo" /> {/* Hotel Logo */}
+            <img src="/hotel-logo.jpg" alt="Floresta Hotel" className="hotel-logo" />
             <h1>We need to retrieve your booking details. How would you like it to be done?</h1>
-            <button onClick={handleEnterBookingNumber} className="enter-booking-button">Enter Booking Number</button>
-            <button onClick={handleScanBarcode} className="scan-barcode-button">Scan Barcode</button>
-            <div className="kiosk-dev">KIOSK DEVELOPED BY: </div>
-            <div className="kiosk-logo">Kiosk Logo</div>
+            <div className="button-container">
+                <button onClick={handleEnterBookingNumber} className="check-in-button">
+                    Enter Booking Number
+                </button>
+                <button onClick={handleScanBarcode} className="check-in-button">
+                    Scan Barcode
+                </button>
+            </div>
+            <div className="kiosk-footer">
+                <span>KIOSK DEVELOPED BY:</span>
+                <img src="/kiosk-logo.jpg" alt="Kiosk Logo" className="kiosk-logo" />
+            </div>
         </div>
     );
 };
