@@ -19,25 +19,47 @@ const CustomerDetailsPage = () => {
     };
 
     useEffect(() => {
-        const fetchData = async () => {
-            if (bookingNumberFromCheckIn) {
-                setError(null);
-                try {
-                    const response = await fetch(`https://welcom3p0d.netlify.app/.netlify/functions/database/${bookingNumberFromCheckIn}`);
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    const data = await response.json();
-                    setCustomerDetails(data);
-                } catch (error) {
-                    console.error("Error fetching booking data:", error);
-                    setError("Failed to fetch booking data. Please check the booking number.");
-                    setCustomerDetails({});
-                }
-            }
-        };
-        fetchData();
-    }, [bookingNumberFromCheckIn]);
+      const fetchData = async () => {
+          if (bookingNumberFromCheckIn) {
+              setError(null);
+              try {
+                  const response = await fetch(`https://welcom3p0d.netlify.app/.netlify/functions/database/${bookingNumberFromCheckIn}`);
+                  if (!response.ok) {
+                      throw new Error(`HTTP error! status: ${response.status}`);
+                  }
+                  const data = await response.json();
+                  
+                  // If the API returns empty data, use mock data
+                  if (!data || Object.keys(data).length === 0) {
+                      console.warn("No data found, using mock data.");
+                      setCustomerDetails({
+                          bookingNumber: bookingNumberFromCheckIn,
+                          checkInDate: "2025-03-20",
+                          checkOutDate: "2025-03-25",
+                          numberOfGuests: 2,
+                          roomNumber: "305"
+                      });
+                  } else {
+                      setCustomerDetails(data);
+                  }
+              } catch (error) {
+                  console.error("Error fetching booking data:", error);
+                  setError("Failed to fetch booking data. Using mock data.");
+  
+                  // Fallback to mock data on error
+                  setCustomerDetails({
+                      bookingNumber: bookingNumberFromCheckIn || "FAKE1234",
+                      checkInDate: "2025-03-20",
+                      checkOutDate: "2025-03-25",
+                      numberOfGuests: 2,
+                      roomNumber: "305"
+                  });
+              }
+          }
+      };
+      fetchData();
+  }, [bookingNumberFromCheckIn]);
+  
 
     return (
         <div className="customer-details-container">
