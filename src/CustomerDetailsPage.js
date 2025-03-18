@@ -9,7 +9,7 @@ const CustomerDetailsPage = () => {
     const location = useLocation();
     const [customerDetails, setCustomerDetails] = useState({});
     const [scanning, setScanning] = useState(false);
-    const [error, setError] = useState(null);
+    //const [error, setError] = useState(null);
     const [isManualNumberEntry, setIsManualNumberEntry] = useState(false);
 
     const bookingNumberFromCheckIn = location.state?.bookingNumber;
