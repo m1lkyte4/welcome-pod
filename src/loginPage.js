@@ -19,8 +19,20 @@ const LoginPage = () => {
     }
 
     try {
-      const response = await axios.get(`http://localhost:3000/api/bookings/${bookingNumber}`);
-      const customerDetails = response.data;
+      //const response = await fetch(`http://localhost:3000/api/bookings/${bookingNumber}`);
+      //const customerDetails = response.data;
+      const response = await fetch(
+        `https://welcom3p0d.netlify.app/.netlify/functions/database/${bookingNumber}`,
+        { mode: "cors" }
+    );
+
+      if (!response.ok) {
+        throw new Error("Booking not found");
+    }
+
+      const customerDetails = await response.json();
+
+
 
       if (customerDetails) {
           // Create a serializable copy of customerDetails
