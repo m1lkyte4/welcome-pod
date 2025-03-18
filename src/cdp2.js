@@ -11,7 +11,7 @@ const mockBookingData = {
   roomNumber: 302,
 };
 
-const cdp2 = () => {
+const Cdp2 = () => {
     const navigate = useNavigate();
   return (
     <div className="dupe-container">
@@ -36,4 +36,4 @@ const cdp2 = () => {
   );
 };
 
-export default cdp2;
+export default Cdp2;
