@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './checkinmethod.css'; 
+import hotelName from './assets/hotel-logo.jpg';
+import kioskLogo from './assets/kiosk-logo.webp';
 
 const CheckInMethod = () => {
     const navigate = useNavigate();
@@ -15,7 +17,7 @@ const CheckInMethod = () => {
 
     return (
         <div className="check-in-container">
-            <img src="/hotel-logo.jpg" alt="Floresta Hotel" className="hotel-logo" />
+            <img src={hotelName} alt="Floresta Hotel" className="hotel-logo" />
             <h1>We need to retrieve your booking details. How would you like it to be done?</h1>
             <div className="button-container">
                 <button onClick={handleEnterBookingNumber} className="check-in-button">
@@ -27,7 +29,7 @@ const CheckInMethod = () => {
             </div>
             <div className="kiosk-footer">
                 <span>KIOSK DEVELOPED BY:</span>
-                <img src="/kiosk-logo.jpg" alt="Kiosk Logo" className="kiosk-logo" />
+                <img src={kioskLogo} alt="Kiosk Logo" className="kiosk-logo" />
             </div>
         </div>
     );
