@@ -12,12 +12,25 @@ const BarcodeScanner = () => {
       { fps: 10, qrbox: { width: 250, height: 250 } }
     );
 
+    const fetchBookingAndNavigate = (bookingId) => {
+        fetch(`https://dry-taiga-23762-9fd065b4ee2b.herokuapp.com/api/bookings/${bookingId}`)
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Fetched Booking Data:", data); // Debugging
+            navigate(`/customer-details/${data.bookingNumber}`);
+          })
+          .catch((error) => {
+            console.error("Error fetching booking:", error);
+            navigate(`/customer-details/${bookingId}`); // Fallback redirect
+          });
+      };
+
     scanner.render(
       (decodedText, decodedResult) => {
         alert(`Scanned result: ${decodedText}`);
         console.log(decodedResult);
         scanner.clear(); // Stop scanning after success
-        navigate('/customer-details/100001'); // Redirect to customer details
+        fetchBookingAndNavigate(decodedText); // Navigate with scanned ID
       },
       (errorMessage) => {
         console.error(`Error scanning: ${errorMessage}`);
@@ -27,8 +40,9 @@ const BarcodeScanner = () => {
     // Automatically redirect after 5 seconds
     const timer = setTimeout(() => {
       scanner.clear();
-      navigate('/customer-details/100001'); // Redirect to customer details page
+      fetchBookingAndNavigate("100012"); // Default booking ID
     }, 5000);
+
 
     return () => {
       clearTimeout(timer);
