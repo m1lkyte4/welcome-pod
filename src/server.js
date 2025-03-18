@@ -2,7 +2,6 @@ const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const QRCode = require('qrcode');
 
 dotenv.config();
 
@@ -10,8 +9,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Update CORS to allow requests from your Netlify app
+// Remove trailing slash from origin URL
 const corsOptions = {
-    origin: 'https://welcom3p0d.netlify.app', // Ensure no trailing slash
+    origin: 'https://welcom3p0d.netlify.app', // Removed trailing slash
     optionsSuccessStatus: 200,
     credentials: true
 };
@@ -23,6 +23,7 @@ app.use(express.json());
 function getDbConfig() {
     if (process.env.JAWSDB_URL) {
         try {
+            // Parse connection string like mysql://username:password@hostname:port/database
             const matches = process.env.JAWSDB_URL.match(/mysql:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/);
             return {
                 host: matches[3],
@@ -36,9 +37,11 @@ function getDbConfig() {
             };
         } catch (error) {
             console.error("Error parsing JAWSDB_URL:", error);
+            // Fall back to environment variables
         }
     }
     
+    // Default config using environment variables
     return {
         host: process.env.DB_HOST || 'localhost',
         user: process.env.DB_USER || 'root',
@@ -50,18 +53,22 @@ function getDbConfig() {
     };
 }
 
-// Create database connection pool
+// Create pool with the appropriate config
 const pool = mysql.createPool(getDbConfig());
 
 // Test database connection
-pool.query('SELECT 1', (err) => {
-    if (err) console.error('Database connection failed:', err);
-    else console.log('Database connected successfully');
+pool.query('SELECT 1', (err, results) => {
+    if (err) {
+        console.error('Database connection failed:', err);
+    } else {
+        console.log('Database connected successfully');
+    }
 });
 
 // API endpoint to add a booking
 app.post('/api/bookings', (req, res) => {
     const booking = req.body;
+    console.log('Adding booking:', booking);
     
     pool.query('INSERT INTO bookings SET ?', booking, (err, results) => {
         if (err) {
@@ -76,73 +83,63 @@ app.post('/api/bookings', (req, res) => {
 // API endpoint to get booking by booking number
 app.get('/api/bookings/:bookingNumber', (req, res) => {
     const bookingNumber = req.params.bookingNumber;
+    console.log('Looking up booking number:', bookingNumber);
     
     pool.query('SELECT * FROM bookings WHERE bookingNumber = ?', [bookingNumber], (err, results) => {
         if (err) {
+            console.error('Error getting booking:', err);
             res.status(500).json({ error: 'Error getting booking', details: err.message });
         } else if (results.length === 0) {
+            console.log('No booking found with number:', bookingNumber);
             res.status(404).json({ error: 'Booking not found' });
         } else {
+            console.log('Found booking:', results[0]);
             res.json(results[0]);
         }
     });
 });
 
-// ✅ API to generate QR code for a booking
-app.get('/api/generate-qr/:bookingNumber', (req, res) => {
-    const bookingNumber = req.params.bookingNumber;
-
-    pool.query('SELECT * FROM bookings WHERE bookingNumber = ?', [bookingNumber], (err, results) => {
-        if (err) {
-            return res.status(500).json({ error: 'Database error', details: err.message });
-        }
-        if (results.length === 0) {
-            return res.status(404).json({ error: 'Booking not found' });
-        }
-
-        const booking = results[0];
-        const qrData = JSON.stringify(booking); // Convert to JSON string
-
-        // Generate QR Code
-        QRCode.toDataURL(qrData, (err, url) => {
-            if (err) {
-                return res.status(500).json({ error: 'QR Code generation failed', details: err.message });
-            }
-            
-            res.send(`
-                <h1>QR Code for Booking ${bookingNumber}</h1>
-                <img src="${url}" />
-                <p>Scan this QR code to retrieve booking details</p>
-            `);
-        });
-    });
-});
-
-// Test database connection API
+// Add a test endpoint to verify database connection
 app.get('/api/test-db', (req, res) => {
     pool.query('SELECT 1 as connection_test', (err, results) => {
         if (err) {
+            console.error('Database test failed:', err);
             res.status(500).json({ 
                 success: false, 
                 error: 'Database connection failed', 
-                details: err.message
+                details: err.message,
+                config: {
+                    host: getDbConfig().host,
+                    user: getDbConfig().user,
+                    database: getDbConfig().database
+                    // Don't send password in response
+                }
             });
         } else {
             res.json({ 
                 success: true, 
                 message: 'Database connected successfully',
-                result: results[0]
+                result: results[0],
+                config: {
+                    host: getDbConfig().host,
+                    user: getDbConfig().user,
+                    database: getDbConfig().database
+                    // Don't send password in response
+                }
             });
         }
     });
 });
 
-// Root API route
+// Add a simple route for the root path
 app.get('/', (req, res) => {
     res.send('Welcome to the Welcome Pod API!');
 });
 
-// Start the server
+/*app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
+}); */
+
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server listening at http://0.0.0.0:${port}`);
 });

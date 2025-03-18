@@ -14,6 +14,7 @@
     "express": "^4.21.2",
     "mysql2": "^3.13.0",
     "pg": "^8.14.0",
+    "qrcode": "^1.5.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.2.0",
