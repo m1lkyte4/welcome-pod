@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./cdp2.css";
 import hotelName from './assets/hotel-logo.jpg';
 
@@ -11,6 +12,7 @@ const mockBookingData = {
 };
 
 const cdp2 = () => {
+    const navigate = useNavigate();
   return (
     <div className="dupe-container">
       <img className={hotelName} src="/floresta-logo.png" alt="Floresta Hotel" />
