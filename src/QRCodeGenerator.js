@@ -5,11 +5,20 @@ import QRCode from 'qrcode.react'; // Ensure you have qrcode.react installed
 const QRCodeGenerator = ({ bookingNumber }) => {
     const [bookingData, setBookingData] = useState(null);
     const [qrCode, setQrCode] = useState(null);
+    const [isLoading, setIsLoading] = useState(true); // Added loading state
+
+    const [error, setError] = useState(null); // Added error state
 
     useEffect(() => {
         const fetchData = async () => {
+            setIsLoading(true); // Start loading
+            setError(null); // Clear any previous errors
+            
             try {
-                const response = await fetch(`http://localhost:5000/bookings/${bookingNumber}`);
+                //const response = await fetch(`http://localhost:5000/bookings/${bookingNumber}`);
+                const netlifyFunctionPath = '/api/database';
+                const response = await fetch(netlifyFunctionPath);
+                
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -29,6 +38,15 @@ const QRCodeGenerator = ({ bookingNumber }) => {
 
         fetchData();
     }, [bookingNumber]);
+
+    // Conditionally render based on loading and error states
+    if (isLoading) {
+        return <p>Loading booking data...</p>;
+    }
+
+    if (error) {
+        return <p>Error: {error.message}</p>;
+    }
 
     return (
         <div>
