@@ -10,29 +10,29 @@
     color: #000;
   }
   
-  .hotel-logo {
+  .check-in-method-container .hotel-logo {
       width: 200px; /* Adjust the width as needed */
       height: auto; /* Maintain aspect ratio */
       margin-bottom: 20px; /* Add some space below the logo */
     }
   
-  h2 {
+  .check-in-method-container h2 {
     font-size: 2em; /* Adjust size as needed */
     margin-bottom: 10px;
   }
 
-  p {
+  .check-in-method-container p {
     font-size: 1.1em;
     margin-bottom: 20px;
   }
   
-.button-container {
+.check-in-method-container .button-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-  .check-in-button {
+  .check-in-method-container .check-in-button {
     background-color: transparent; 
     color: #000; /* Black text */
     padding: 12px 24px;
@@ -46,7 +46,7 @@
     margin-bottom: 20px; /* Add spacing between buttons */
   }
   
-  .check-in-button:hover {
+  .check-in-method-container .check-in-button:hover {
     background-color: #000; /* Black background on hover */
     color: #fff; /* White text on hover */
   }

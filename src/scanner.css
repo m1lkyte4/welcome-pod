@@ -4,11 +4,11 @@
     height: 300px;
     }
     
-    .check-in-method-container {
+    .scanner .check-in-method-container {
     text-align: center;
     }
     
-    .check-in-button {
+    .scanner .check-in-button {
     display: block;
     margin: 10px auto;
     padding: 10px;

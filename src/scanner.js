@@ -27,7 +27,15 @@ const BarcodeScanner = () => {
     };
   }, []);
 
-  return <div id="qr-reader" ref={scannerRef}></div>;
+  //return <div id="qr-reader" ref={scannerRef}></div>;
+  return (
+    <div className="scanner"> 
+      <div id="qr-reader"></div>
+      {/* Add your "Stop Scanning" button here, if it exists */}
+      {/* Ensure the button has the class "check-in-button" if you want to style it */}
+      <button className="check-in-button" onClick={() => scannerRef.current.clear()}>Stop Scanning</button>
+    </div>
+  );
 };
 
 export default BarcodeScanner;
