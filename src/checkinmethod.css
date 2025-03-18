@@ -44,6 +44,9 @@
     transition: background-color 0.3s, color 0.3s;
     font-family: 'Kalam', sans-serif; /* Apply Kalam to the button */
     margin-bottom: 20px; /* Add spacing between buttons */
+    width: 300px; /* Adjust the width as needed */
+    min-width: 300px; /* Ensures a minimum width */
+    max-width: 80%; /* Optional: responsive width */
   }
   
   .check-in-method-container .check-in-button:hover {
