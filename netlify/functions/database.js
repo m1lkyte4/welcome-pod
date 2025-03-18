@@ -4,7 +4,7 @@ require('dotenv').config();
 function parseDbUrl(url) {
   const pattern = /^mysql:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)$/;
   const matches = url.match(pattern);
-  
+
   if (matches) {
     return {
       user: matches[1],
@@ -14,7 +14,7 @@ function parseDbUrl(url) {
       database: matches[5]
     };
   }
-  
+
   return null;
 }
 
@@ -34,14 +34,9 @@ const config = process.env.JAWSDB_URL
 
 const pool = mysql.createPool(config);
 
-
 exports.handler = async (event, context) => {
-  let connection;
-  let config;
-  
   try {
     // Extract booking ID from path
-    // This handles different ways Netlify might pass the path
     let bookingId;
     if (event.pathParameters) {
       bookingId = event.pathParameters.id;
@@ -54,26 +49,9 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Query database
+    // Query database using the connection pool
     const [rows] = await pool.query('SELECT * FROM bookings WHERE bookingNumber = ?', [bookingId]);
-    
-    // Use JAWSDB_URL if available
-    if (process.env.JAWSDB_URL) {
-      config = parseDbUrl(process.env.JAWSDB_URL);
-    } else {
-      config = {
-        host: process.env.DB_HOST || 'localhost',
-        user: process.env.DB_USER || 'root',
-        password: process.env.DB_PASSWORD || 'March@2025',
-        database: process.env.DB_NAME || 'welcome_pod',
-        port: process.env.DB_PORT || 3306
-      };
-    }
-    
-    connection = await mysql.createConnection(config);
-    const [rows] = await connection.query('SELECT * FROM bookings WHERE bookingNumber = ?', [bookingId]);
-    await connection.end();
-    
+
     // Check if booking was found
     if (rows.length === 0) {
       return {
@@ -81,7 +59,7 @@ exports.handler = async (event, context) => {
         body: JSON.stringify({ error: 'Booking not found' }),
       };
     }
-    
+
     return {
       statusCode: 200,
       body: JSON.stringify(rows[0]), // Return the first matching booking
