@@ -80,3 +80,10 @@
 .button-row button:hover {
   opacity: 0.8;
 }
+
+.customer-details-container .error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+

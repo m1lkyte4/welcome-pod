@@ -3,12 +3,9 @@ import { Link } from 'react-router-dom';
 import './checkinmethod.css';
 import kioskLogo from './assets/kiosk-logo.webp';
 import hotelName from './assets/hotel-logo.jpg'; 
-import QRCodeGenerator from './QRCodeGenerator';
+
 
 const CheckInMethodPage = () => {
-  // Hardcoded booking number for demonstration
-  const bookingNumber = '100001';
-
   return (
     <div className="check-in-method-container">
       <img src={hotelName} alt="Floresta Hotel" className="hotel-logo" />

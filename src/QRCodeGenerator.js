@@ -20,8 +20,15 @@ const QRCodeGenerator = ({ bookingNumber }) => {
                 }
                 const data = await response.json();
                 setBookingData(data);
+                
+                // Format the data for the QR code as JSON
+                const qrData = JSON.stringify({
+                    bookingNumber: data.bookingNumber,
+                    checkInDate: data.checkInDate,
+                    roomNumber: data.roomNumber
+                });
 
-                const qrData = `Booking Number: ${data.bookingNumber}, Check-in Date: ${data.checkInDate}, Room Number: ${data.roomNumber}`;
+                //const qrData = `Booking Number: ${data.bookingNumber}, Check-in Date: ${data.checkInDate}, Room Number: ${data.roomNumber}`;
                 setQrCode(qrData);
                 setIsLoading(false); // Set isLoading to false after fetching data
             } catch (error) {
