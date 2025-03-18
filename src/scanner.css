@@ -1,32 +1,22 @@
 #qr-reader {
-    width: 70vh; /* Use viewport height for size */
-    height: 70vh; /* Use viewport height for size */
-    max-width: 80%; /* Responsive width */
-    max-height: 80%; /* Responsive height */
-    margin: auto;    /* Center horizontally */
-    position: absolute; /* Required for vertical centering */
-    top: 50%;         /* Required for vertical centering */
-    left: 50%;        /* Required for vertical centering */
-    transform: translate(-50%, -50%); /* Centers the element perfectly */
-  }
-  
-  .check-in-method-container {
+    margin: auto;
+    width: 300px;
+    height: 300px;
+    }
+    
+    .check-in-method-container {
     text-align: center;
-  }
-  
-  .check-in-button {
+    }
+    
+    .check-in-button {
     display: block;
     margin: 10px auto;
     padding: 10px;
     background-color: #007bff;
     color: white;
     text-decoration: none;
-    width: 200px; /* Set a fixed width for the buttons */
-  }
-  
-  .hotel-logo {
+    }
+    
+    .scanner .hotel-logo {
     width: 150px;
-    margin: 0 auto; /* Center the logo horizontally */
-    display: block;  /* Ensure margin auto works correctly */
-  }
-  
+    }
