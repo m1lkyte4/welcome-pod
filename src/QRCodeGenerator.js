@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import QRCode from 'qrcode.react';
+import QRCodeGenerator from 'qrcode.react';
+//import { QRCodeSVG } from 'qrcode.react';
 
 const QRCodeGenerator = ({ bookingNumber }) => {
     const [bookingData, setBookingData] = useState(null);
