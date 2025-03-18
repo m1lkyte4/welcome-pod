@@ -51,3 +51,16 @@
     color: #fff; /* White text on hover */
   }
   
+  .check-in-button .kiosk-footer {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.check-in-method-container .kiosk-logo {
+    width: 40px;
+    height: 40px;
+}
