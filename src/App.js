@@ -9,6 +9,7 @@ import LoadingPage from './loading';
 import Loading2 from './loading2';
 import Dispenser from './dispenser';
 import ErrorPage from './errorPage';
+import BarcodeScanner from './scanner';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/check-in-method" element={<CheckInMethodPage />} />
+        <Route path="/scan-barcode" element={<BarcodeScanner />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path='/loading' element={<LoadingPage />} />
         <Route path="/customer-details" element={<CustomerDetailsPage />} />
