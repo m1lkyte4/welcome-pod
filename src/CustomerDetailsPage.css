@@ -21,7 +21,7 @@
   margin-bottom: 20px;
 }
 
-.details-box {
+.customer-details-container .details-box {
   border: 2px solid #007bff; /* Blue border */
   border-radius: 10px;
   padding: 20px;
@@ -32,22 +32,22 @@
   text-align: left;
 }
 
-.details-section p {
+.customer-details-container .details-section p {
   margin-bottom: 10px;
 }
 
-.details-section strong {
+.customer-details-container .details-section strong {
   font-weight: bold;
   margin-right: 5px;
 }
 
-.button-row {
+.customer-details-container .button-row {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
-.button-row button {
+.customer-details-container .button-row button {
   padding: 10px 20px;
   margin: 0 10px;
   font-size: 1em;
@@ -57,31 +57,31 @@
   transition: background-color 0.3s;
 }
 
-.back-button {
+.customer-details-container .back-button {
   background-color: #6c757d; /* Gray */
   color: white;
 }
 
-.cancel-button {
+.customer-details-container .cancel-button {
   background-color: #dc3545; /* Red */
   color: white;
 }
 
-.confirm-button {
+.customer-details-container .confirm-button {
   background-color: #28a745; /* Green */
   color: white;
 }
 
-.call-staff-button {
+.customer-details-container .call-staff-button {
   background-color: #ffc107; /* Yellow */
   color: #000;
 }
 
-.button-row button:hover {
+.customer-details-container .button-row button:hover {
   opacity: 0.8;
 }
 
-.customer-details-container .error-message {
+.customer-details-container .customer-details-container .error-message {
   color: red;
   font-weight: bold;
   margin-top: 10px;
