@@ -1,7 +1,8 @@
 #qr-reader {
-    margin: auto;
-    width: 300px;
-    height: 300px;
+    margin: 20px auto; /* Adds margin on top and bottom, centers horizontally */
+    width: 500px;      /* Increased width */
+    height: 500px;     /* Increased height */
+    max-width: 80%;    /* Responsive width */
   }
   
   .check-in-method-container {
@@ -15,9 +16,12 @@
     background-color: #007bff;
     color: white;
     text-decoration: none;
+    width: 200px; /* Set a fixed width for the buttons */
   }
   
   .hotel-logo {
     width: 150px;
+    margin: 0 auto; /* Center the logo horizontally */
+    display: block;  /* Ensure margin auto works correctly */
   }
   
