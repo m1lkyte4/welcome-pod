@@ -1,11 +1,15 @@
+const generateQR = require('./generateQR');
+app.use('/generate-qr', generateQR);
+
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000; // Use Heroku's provided port
+const path = require('path');
 
-app.get('/', (req, res) => {
-    res.send('Hello from the new backend file!');
+app.use(express.static(path.join(__dirname, 'public')));  // Serve static files
+
+app.get('/qr', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'qr-code.png'));
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

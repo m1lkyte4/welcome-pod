@@ -1,13 +1,15 @@
-const QRCode = require("qrcode");
+const QRCode = require('qrcode');
+const fs = require('fs');
 
-async function generateQR(data) {
-  try {
-    const qrCodeDataURL = await QRCode.toDataURL(data);
-    return qrCodeDataURL;
-  } catch (err) {
-    console.error("Error generating QR Code:", err);
-    throw err;
-  }
-}
+const generateQR = async (text) => {
+    try {
+        const qrPath = 'public/qr-code.png';  // Change the path as needed
+        await QRCode.toFile(qrPath, text);
+        console.log(`QR Code saved at ${qrPath}`);
+    } catch (err) {
+        console.error(err);
+    }
+};
 
-module.exports = generateQR;
+// Example usage
+generateQR('https://example.com');
