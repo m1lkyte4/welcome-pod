@@ -1,6 +1,6 @@
 // src/QRCodeGenerator.js
 import React, { useState, useEffect } from 'react';
-import { QRCode } from 'qrcode.react';  // ✅ Correct
+import QRCode from 'qrcode.react';
 
 const QRCodeGenerator = ({ bookingNumber }) => {
     const [bookingData, setBookingData] = useState(null);
