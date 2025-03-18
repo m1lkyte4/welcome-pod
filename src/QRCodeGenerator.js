@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import QRCodeGenerator from 'qrcode.react';
-//import { QRCodeSVG } from 'qrcode.react';
+import { QRCodeSVG } from 'qrcode.react';
 
 const QRCodeGenerator = ({ bookingNumber }) => {
     const [bookingData, setBookingData] = useState(null);
@@ -54,7 +53,8 @@ const QRCodeGenerator = ({ bookingNumber }) => {
             {qrCode && (
                 <div>
                     <h3>QR Code</h3>
-                    <QRCode value={qrCode} size={256} level="H" />
+                    <QRCodeSVG value={qrCode} size={256} level="H" />
+
                 </div>
             )}
         </div>
