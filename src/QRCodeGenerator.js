@@ -15,9 +15,10 @@ const QRCodeGenerator = ({ bookingNumber }) => {
             setError(null); // Clear any previous errors
             
             try {
-                //const response = await fetch(`http://localhost:5000/bookings/${bookingNumber}`);
-                const netlifyFunctionPath = '/api/database';
-                const response = await fetch(netlifyFunctionPath);
+                const response = await fetch(`https://welcom3p0d.netlify.app/.netlify/functions/database/${bookingNumber}`);
+                
+                //const netlifyFunctionPath = '/api/database';
+                //const response = await fetch(netlifyFunctionPath);
                 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
